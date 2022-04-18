@@ -2,12 +2,12 @@ import cv2
 import numpy as np
 
 net = cv2.dnn.readNet(
-    'resources/normal/yolov3.weights', 'resources/normal/yolov3.cfg')
+    'resources/yolov2-tiny.weights', 'resources/yolov3.cfg')
 classes = []
-with open('resources/normal/coco.names', 'r') as f:
+with open('resources/coco.names', 'r') as f:
     classes = f.read().splitlines()
 
-img = cv2.imread('resources/image.png')
+img = cv2.imread('resources/rock.jpg') # input file location
 height, width, _ = img.shape
 
 # prepare the image blob

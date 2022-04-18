@@ -2,16 +2,17 @@ import cv2
 import numpy as np
 
 net = cv2.dnn.readNet(
-    'resources/normal/yolov3.weights', 'resources/normal/yolov3.cfg')
+    'resources/yolov2-tiny.weights', 'resources/yolov3.cfg')
 classes = []
-with open('resources/normal/coco.names', 'r') as f:
+with open('resources/coco.names', 'r') as f:
     classes = f.read().splitlines()
 
 # cap = cv2.VideoCapture(0)
-cap = cv2.VideoCapture('resources/test.mp4')
+cap = cv2.VideoCapture('resources/dog.mp4')
 font = cv2.FONT_HERSHEY_PLAIN
 
-while True:
+# we are just putting everything from Image_Detection.py into this while loop
+while True: 
     _, img = cap.read()
     height, width, _ = img.shape
     blob = cv2.dnn.blobFromImage(
