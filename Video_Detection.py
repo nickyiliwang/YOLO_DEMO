@@ -7,8 +7,9 @@ classes = []
 with open('resources/coco.names', 'r') as f:
     classes = f.read().splitlines()
 
+# captures the web cam instead
 # cap = cv2.VideoCapture(0)
-cap = cv2.VideoCapture('resources/dog.mp4')
+cap = cv2.VideoCapture('resources/inputs/dog.mp4')
 font = cv2.FONT_HERSHEY_PLAIN
 
 # we are just putting everything from Image_Detection.py into this while loop
@@ -49,17 +50,13 @@ while True:
     results = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
     colors = np.random.uniform(0, 255, size=(len(boxes), 3))
 
-    # checking for null values
     if len(results) > 0:
-        # identify each object
         for i in results.flatten():
             x, y, w, h = boxes[i]
             label = str(classes[class_ids[i]])
             confidence = str(round(confidences[i], 2))
             color = colors[i]
-            # create a rectangle
             cv2.rectangle(img, (x, y), (x+w, y+h), color, 2)
-            # put output texts back onto the image, upper left
             cv2.putText(img, label + " " + confidence,
                         (x, y+20), font, 2, (255, 255, 255), 2)
 
